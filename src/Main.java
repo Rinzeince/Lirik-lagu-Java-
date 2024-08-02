@@ -12,20 +12,31 @@ public class Main {
         };
 
         int[] delay = {
-                4000, // Lirik pertama 1 detik
-                4000, // 2
-                5000, // 3
-                4000, // 4
-                4800, // 5
-                4500, // 6
-                4300, // 7
-                4700 // Lirik terakhir 1,5 detik
+                2000, // Lirik pertama 1 detik
+                2000, // 2
+                1800, // 3
+                2500, // 4
+                3000, // 5
+                2000, // 6
+                2500, // 7
+                3000 // Lirik terakhir 1,5 detik
         };
 
+        int charDelay = 40; // Delay per huruf dalam milidetik
+
         for (int i = 0; i < lyrics.length; i++) {
-            System.out.println(lyrics[i]);
+            String lyric = lyrics[i];
+            for (int j = 0; j < lyric.length(); j++) {
+                System.out.print(lyric.charAt(j));
+                try {
+                    Thread.sleep(charDelay);
+                } catch (InterruptedException e) {
+                    System.err.println("Thread interruped: " + e.getMessage());
+                }
+            }
+            System.out.println(); // Pindah ke baris berikutnya setelah lirik selesai ditampilkan
             try {
-                // Menunggu sesuai delay
+                // Menunggu sesuai delay sebelum menampilkan lirik berikutnya
                 Thread.sleep(delay[i]);
             } catch (InterruptedException e) {
                 System.err.println("Thread interruped: " + e.getMessage());
